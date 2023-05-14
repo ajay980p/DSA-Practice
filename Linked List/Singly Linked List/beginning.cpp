@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+//! This will just give a Node structure. How it will looks?
 struct Node
 {
     int data;
@@ -13,6 +14,7 @@ struct Node
     }
 };
 
+//! This will just going to insert Node at the beginning of the Linked List
 void insertAtHead(Node *&head, int data)
 {
     // Create new Node
@@ -21,6 +23,7 @@ void insertAtHead(Node *&head, int data)
     head = temp;
 }
 
+//! This will going to add Node at the end of the Linked list
 void insertAtTail(Node *&tail, int data)
 {
     // Create new Node
@@ -29,6 +32,7 @@ void insertAtTail(Node *&tail, int data)
     tail = temp;
 }
 
+//! This will insert element at specific position
 void insertAtPosition(Node *&head, int position, int data)
 {
     int count = 1;
@@ -61,6 +65,35 @@ void insertAtPosition(Node *&head, int position, int data)
     temp->next = p;
 }
 
+//! This will just delete the Node
+void deleteNode(Node *&head, int pos)
+{
+    Node *temp = head;
+    if (pos == 1)
+    {
+        head = temp->next;
+        temp = head;
+        return;
+    }
+
+    Node *p;
+    int count = 0;
+    while (temp != NULL)
+    {
+        count++;
+        if (count == pos - 1)
+        {
+            p = temp->next;
+            break;
+        }
+
+        temp = temp->next;
+    }
+    temp->next = p->next;
+    free(p);
+}
+
+//! This will Print each and every Element
 void print(Node *head)
 {
     // Create new Node
@@ -74,6 +107,7 @@ void print(Node *head)
     }
 }
 
+//! Main function
 int main()
 {
     // Created a new Node
@@ -95,5 +129,9 @@ int main()
 
     insertAtPosition(head, 4, 20);
 
+    print(head);
+    cout << "*************";
+
+    deleteNode(head, 5);
     print(head);
 }
